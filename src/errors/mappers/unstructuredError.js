@@ -1,8 +1,6 @@
-'use strict';
+import CustomError from '../CustomError.js';
 
-const CustomError = require('../CustomError');
-
-module.exports = error => {
+export default error => {
   if (error.fieldName && (error.message || error.detail)) {
     return CustomError.create({
       httpCode: error.code || 400,

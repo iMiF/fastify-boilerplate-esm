@@ -1,5 +1,3 @@
-'use strict';
-
 const headers = {
   withAuthorization: {
     type: 'object',
@@ -58,7 +56,4 @@ const errorSchemas = {
   502: commonErrorSchema
 };
 
-module.exports = {
-  headers,
-  errorSchemas
-};
+export { headers, errorSchemas };

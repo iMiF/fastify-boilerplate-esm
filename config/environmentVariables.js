@@ -1,5 +1,3 @@
-'use strict';
-
 const schema = {
   type: 'object',
   properties: {
@@ -40,4 +38,4 @@ const schema = {
   }
 };
 
-exports.config = { dotenv: true, schema };
+export const config = { dotenv: true, schema };

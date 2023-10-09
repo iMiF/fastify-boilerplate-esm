@@ -1,9 +1,8 @@
-'use strict';
-const envSchema = require('env-schema');
+import envSchema from 'env-schema';
 
-const { init, run } = require('./server');
-const { config: envConfig } = require('../config/environmentVariables');
-const lib = require('./lib');
+import { init, run } from './server.js';
+import { config as envConfig } from '../config/environmentVariables.js';
+import * as lib from './lib/index.js';
 
 (async () => {
   const config = envSchema(envConfig);

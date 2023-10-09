@@ -1,7 +1,5 @@
-'use strict';
-
-const { uuidV4 } = require('../../../lib');
-const { TodoRepository } = require('../repository');
+import { uuidV4 } from '../../../lib/index.js';
+import { TodoRepository } from '../repository/index.js';
 
 const createTodo = async ({ fastify, logTrace, todo }) => {
   const { TodoRepo } = TodoRepository;
@@ -15,4 +13,4 @@ const createTodo = async ({ fastify, logTrace, todo }) => {
   return createdTodo;
 };
 
-module.exports = createTodo;
+export default createTodo;

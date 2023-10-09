@@ -1,5 +1,3 @@
-'use strict';
+import TodoRepository from './todo.js';
 
-const TodoRepository = require('./todo');
-
-module.exports = { TodoRepository };
+export { TodoRepository };

@@ -1,7 +1,5 @@
-'use strict';
-
-const { PASSWORD, PHONE_NUMBER } = require('../../common/pattern');
-const { errorSchemas } = require('../../common/schema');
+import { PASSWORD, PHONE_NUMBER } from '../../common/pattern.js';
+import { errorSchemas } from '../../common/schema.js';
 
 const request = {
   tags: ['Auth'],
@@ -20,17 +18,17 @@ const request = {
         format: 'email',
         minLength: 6,
         maxLength: 100,
-        errorMessage: { format: 'should be valid email' }
+        errorMessage: { format: 'should be a valid email' }
       },
       password: {
         type: 'string',
         pattern: PASSWORD,
-        errorMessage: { pattern: 'should be compliant with password policy' }
+        errorMessage: { pattern: 'should be compliant with the password policy' }
       },
       phoneNumber: {
         type: 'string',
         pattern: PHONE_NUMBER,
-        errorMessage: { pattern: 'should be valid phoneNumber' }
+        errorMessage: { pattern: 'should be a valid phoneNumber' }
       }
     }
   }
@@ -54,4 +52,4 @@ const register = {
   }
 };
 
-module.exports = { register };
+export { register };

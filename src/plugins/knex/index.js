@@ -1,8 +1,6 @@
-'use strict';
-
-const fp = require('fastify-plugin');
-const getKnexClient = require('./setup');
-const dbConfig = require('../../../config/knexConfig');
+import fp from 'fastify-plugin';
+import { getKnexClient } from './setup.js';
+import dbConfig from '../../../config/knexConfig.js';
 
 const knexPlugin = async (fastify, options) => {
   try {
@@ -14,4 +12,4 @@ const knexPlugin = async (fastify, options) => {
   }
 };
 
-module.exports = fp(knexPlugin);
+export default fp(knexPlugin);

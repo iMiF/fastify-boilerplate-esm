@@ -1,6 +1,4 @@
-'use strict';
-
-const { headers, errorSchemas } = require('../../common/schema');
+import { headers, errorSchemas } from '../../common/schema.js';
 
 const createTodoResponseSchema = {
   type: 'object',
@@ -39,4 +37,4 @@ const createTodoSchema = {
   }
 };
 
-module.exports = { createTodoSchema };
+export { createTodoSchema };

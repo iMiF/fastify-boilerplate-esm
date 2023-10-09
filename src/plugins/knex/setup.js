@@ -1,12 +1,10 @@
-'use strict';
-
-const knex = require('knex');
-const setupPaginator = require('./paginator');
-const { logger } = require('../../lib/logger');
+import knex from 'knex';
+import setupPaginator from './paginator.js';
+import { logger } from '../../lib/logger.js';
 
 const connectionCheck = db => db.raw('select 1+1 as result');
 
-const getKnexClient = async ({ options }) => {
+export const getKnexClient = async ({ options }) => {
   try {
     const db = knex({ ...options });
     await connectionCheck(db);
@@ -17,5 +15,3 @@ const getKnexClient = async ({ options }) => {
     throw Error(`Connection Failed ${e}`);
   }
 };
-
-module.exports = getKnexClient;

@@ -1,15 +1,13 @@
-'use strict';
+import util from 'util';
 
-const util = require('util');
-
-exports.formatDetail = detail => {
+const formatDetail = detail => {
   if (typeof detail === 'string' || detail instanceof String) {
     return detail;
   }
   return util.inspect(detail);
 };
 
-exports.getPropertyPath = val => {
+const getPropertyPath = val => {
   const path =
     val.params.missingProperty ||
     val.dataPath ||
@@ -21,7 +19,7 @@ exports.getPropertyPath = val => {
   return path.replace('.', '').replace('/', '');
 };
 
-exports.getRequest = request => {
+const getRequest = request => {
   return {
     url: request?.raw?.url || 'NO_URL_FOUND',
     headers: request.headers || 'NO_HEADERS_FOUND',
@@ -31,7 +29,7 @@ exports.getRequest = request => {
 };
 
 // eslint-disable-next-line complexity
-exports.getError = error => {
+const getError = error => {
   return {
     data: {
       message: error.message || error?._errors?.[0]?.code || 'NO_MESSAGE_FOUND',
@@ -46,3 +44,5 @@ exports.getError = error => {
     }
   };
 };
+
+export { formatDetail, getPropertyPath, getRequest, getError };

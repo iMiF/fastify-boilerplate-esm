@@ -1,17 +1,20 @@
-'use strict';
+import 'make-promises-safe';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fastify from 'fastify';
+import fastifyFormbody from '@fastify/formbody';
+import cors from '@fastify/cors';
+import helmet from '@fastify/helmet';
+import swagger from '@fastify/swagger';
+import underPressure from '@fastify/under-pressure';
+import autoload from '@fastify/autoload';
+import * as lib from './lib/index.js';
+import * as routes from './app/routes.js';
+import { requestContext, onResponse, appendPayloadToResponse } from './hooks/index.js';
+import { setupAllShutdownHandlers as setupGracefulShutdown } from './shutdown.js';
 
-require('make-promises-safe');
-const path = require('path');
-const fastify = require('fastify');
-const cors = require('@fastify/cors');
-const helmet = require('@fastify/helmet');
-const swagger = require('@fastify/swagger');
-const underPressure = require('@fastify/under-pressure');
-const autoload = require('@fastify/autoload');
-const lib = require('./lib');
-const routes = require('./app/routes');
-const { requestContext, onResponse, appendPayloadToResponse } = require('./hooks');
-const setupGracefulShutdown = require('./shutdown');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const underPressureConfig = () => {
   return {
@@ -62,7 +65,7 @@ const init = async ({ config }) => {
     }
   });
   app.register(underPressure, underPressureConfig());
-  app.register(require('@fastify/formbody'));
+  app.register(fastifyFormbody);
   app.register(swagger, swaggerConfig());
   app.register(autoload, {
     dir: path.join(__dirname, 'plugins'),
@@ -80,4 +83,4 @@ const init = async ({ config }) => {
 
 const run = app => app.listen({ port: app.config.PORT, host: app.config.HOST });
 
-module.exports = { init, run };
+export { run, init };

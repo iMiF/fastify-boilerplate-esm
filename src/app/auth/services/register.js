@@ -1,5 +1,3 @@
-'use strict';
-
 const createUser = async (fastify, { request }) => {
   const { email, password } = request.body;
   //   const { data: createdUser, error } = '';
@@ -8,4 +6,4 @@ const createUser = async (fastify, { request }) => {
   return { email, password };
 };
 
-module.exports = { createUser };
+export { createUser };

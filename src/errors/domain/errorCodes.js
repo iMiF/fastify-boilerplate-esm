@@ -1,12 +1,8 @@
-'use strict';
+import { StatusCodes as HttpStatus } from 'http-status-codes';
 
-const HttpStatus = require('http-status-codes').StatusCodes;
-
-module.exports = {
-  TODO_NOT_FOUND: {
-    name: 'TODO_NOT_FOUND',
-    message: "TODO Doesn't Exists IN System",
-    explanation: '',
-    httpStatusCode: HttpStatus.NOT_FOUND
-  }
+export const TODO_NOT_FOUND = {
+  name: 'TODO_NOT_FOUND',
+  message: "TODO Doesn't Exists IN System",
+  explanation: '',
+  httpStatusCode: HttpStatus.NOT_FOUND
 };

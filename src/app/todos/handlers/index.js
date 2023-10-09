@@ -1,5 +1,3 @@
-'use strict';
+import createTodo from './createTodo.js';
 
-const createTodo = require('./createTodo');
-
-module.exports = { createTodo };
+export { createTodo };

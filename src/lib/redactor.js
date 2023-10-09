@@ -1,7 +1,5 @@
-'use strict';
-
-const stringify = require('json-stringify-safe');
-const { isEmpty } = require('lodash');
+import stringify from 'json-stringify-safe';
+import isEmpty from 'lodash/isEmpty.js';
 
 const REDACT = '****REDACTED****';
 
@@ -35,8 +33,6 @@ const circularReplacer = () => {
   };
 };
 
-const parser = replacer => o => !isEmpty(o) ? JSON.parse(stringify(o, replacer)) : o;
+const parser = replacer => o => (!isEmpty(o) ? JSON.parse(stringify(o, replacer)) : o);
 
-const redactor = parser(circularReplacer());
-
-module.exports = { redactor };
+export const redactor = parser(circularReplacer());

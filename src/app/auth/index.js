@@ -1,9 +1,7 @@
-'use strict';
+import { register as registerSchema } from './schema/register.js';
+import { registerHandler } from './handlers/register.js';
 
-const { register: registerSchema } = require('./schema/register');
-const { registerHandler } = require('./handlers/register');
-
-module.exports = async fastify => {
+const setupRoutes = async fastify => {
   fastify.route({
     method: 'POST',
     url: '/register',
@@ -11,3 +9,4 @@ module.exports = async fastify => {
     handler: registerHandler
   });
 };
+export default setupRoutes;

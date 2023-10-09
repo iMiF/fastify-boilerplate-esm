@@ -1,13 +1,11 @@
-'use strict';
-
-const CustomError = require('../CustomError');
-const { getPropertyPath } = require('../helpers');
+import CustomError from '../CustomError.js';
+import { getPropertyPath } from '../helpers.js';
 
 const DEFAULT_OPTIONS = {
   showAllowedValues: true
 };
 
-module.exports = (error, options = DEFAULT_OPTIONS) => {
+export default (error, options = DEFAULT_OPTIONS) => {
   if (error.validation) {
     const errorPath = error.message.split(' ')[0].split('/')[0];
     const errors = error.validation.map(val => {

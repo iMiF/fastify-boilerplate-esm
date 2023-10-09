@@ -1,13 +1,6 @@
-'use strict';
+import { ERROR_CODES_MESSAGES } from './constants.js';
+import CustomError from './CustomError.js';
+import errorHandler from './handler.js';
+import { mappers } from './mappers/index.js';
 
-const { ERROR_CODES_MESSAGES } = require('./constants');
-const CustomError = require('./CustomError');
-const errorHandler = require('./handler');
-const mappers = require('./mappers');
-
-module.exports = {
-  CustomError,
-  errorHandler,
-  mappers,
-  ERROR_CODES_MESSAGES
-};
+export { CustomError, errorHandler, mappers, ERROR_CODES_MESSAGES };

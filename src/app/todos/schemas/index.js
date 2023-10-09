@@ -1,5 +1,3 @@
-'use strict';
+import { createTodoSchema } from './createTodo.js';
 
-const { createTodoSchema } = require('./createTodo');
-
-module.exports = { createTodoSchema };
+export { createTodoSchema };

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A full blown production ready boilerplate to build APIs.",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "engines": {
     "node": ">=v16.15.0"
   },

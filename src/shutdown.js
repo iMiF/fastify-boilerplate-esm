@@ -1,6 +1,4 @@
-'use strict';
-
-const { logger } = require('./lib/logger');
+import { logger } from './lib/logger.js';
 
 function setTrapForUncaughtExceptions() {
   process.on('uncaughtException', err => {
@@ -16,7 +14,7 @@ function setTrapForUncaughtExceptions() {
   });
 }
 
-module.exports = function setupAllShutdownHandlers({ fastify }) {
+export const setupAllShutdownHandlers = ({ fastify }) => {
   async function closeDbConnection() {
     logger.info({ message: 'Closing DB connection...' });
     try {

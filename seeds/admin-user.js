@@ -1,7 +1,5 @@
 /* eslint-disable unicorn/filename-case */
-'use strict';
-
-exports.seed = async knex => {
+export const seed = async knex => {
   await knex('user').del();
   await knex('user').insert([
     {

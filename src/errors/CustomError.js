@@ -1,11 +1,8 @@
 /* eslint-disable unicorn/filename-case */
+import { formatDetail } from './helpers.js';
+import { STATUS_CODES, STATUS_TEXTS } from './constants.js';
 
-'use strict';
-
-const { formatDetail } = require('./helpers');
-const { STATUS_CODES, STATUS_TEXTS } = require('./constants');
-
-module.exports = class CustomError extends Error {
+export default class CustomError extends Error {
   constructor({ httpCode, errors, innerError }) {
     super();
     this._code = httpCode;
@@ -47,4 +44,4 @@ module.exports = class CustomError extends Error {
       code
     };
   }
-};
+}

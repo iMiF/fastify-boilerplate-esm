@@ -1,9 +1,11 @@
-'use strict';
-
-const path = require('path');
-const envSchema = require('env-schema');
-const { config: envConfig } = require('./environmentVariables');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import envSchema from 'env-schema';
+import { config as envConfig } from './environmentVariables.js';
 const config = envSchema(envConfig);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, DB_MIN_CONNECTIONS, DB_MAX_CONNECTIONS } =
   config;
@@ -33,4 +35,4 @@ const databaseConfiguration = {
   debug: false
 };
 
-module.exports = databaseConfiguration;
+export default databaseConfiguration;

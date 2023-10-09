@@ -1,7 +1,5 @@
 /* eslint-disable unicorn/filename-case */
-'use strict';
-
-exports.up = async knex => {
+export const up = async knex => {
   const tableExists = await knex.schema.hasTable('todo');
   if (tableExists) return;
   await knex.schema.createTable('todo', table => {
@@ -20,6 +18,6 @@ exports.up = async knex => {
   });
 };
 
-exports.down = async knex => {
+export const down = async knex => {
   return knex.schema.dropTable('todo');
 };

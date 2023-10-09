@@ -1,9 +1,7 @@
-'use strict';
+import CustomError from '../CustomError.js';
+import { POSTGRES_DB_ERRORS } from '../constants.js';
 
-const CustomError = require('../CustomError');
-const { POSTGRES_DB_ERRORS } = require('../constants');
-
-module.exports = error => {
+export default error => {
   if (error.code && POSTGRES_DB_ERRORS[error.code]) {
     const { statusCode, errorCode } = POSTGRES_DB_ERRORS[error.code];
     const detail = error.detail || error.stack;

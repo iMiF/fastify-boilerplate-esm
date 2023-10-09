@@ -1,6 +1,4 @@
-'use strict';
-
-const Knex = require('knex');
+import Knex from 'knex';
 
 const PAGE_SIZE = 10;
 const CURRENT_PAGE = 1;
@@ -48,6 +46,6 @@ function paginate({ pageSize = PAGE_SIZE, currentPage = CURRENT_PAGE, distinctWi
   );
 }
 
-module.exports = function setupPagination(knex) {
+export default function setupPagination(knex) {
   Knex.QueryBuilder.extend('paginate', paginate);
-};
+}

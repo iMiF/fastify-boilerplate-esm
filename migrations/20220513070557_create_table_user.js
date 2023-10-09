@@ -1,7 +1,5 @@
 /* eslint-disable unicorn/filename-case */
-'use strict';
-
-exports.up = async knex => {
+export const up = async knex => {
   await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
   const tableExists = await knex.schema.hasTable('user');
   if (tableExists) return;
@@ -25,6 +23,6 @@ exports.up = async knex => {
   });
 };
 
-exports.down = async knex => {
+export const down = async knex => {
   return knex.schema.dropTable('user');
 };

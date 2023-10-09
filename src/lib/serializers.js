@@ -1,8 +1,6 @@
-'use strict';
-
-const { isEmpty } = require('lodash');
-const { redactor } = require('./redactor');
-const asyncHooks = require('async_hooks');
+import isEmpty from 'lodash/isEmpty.js';
+import { redactor } from './redactor.js';
+import asyncHooks from 'async_hooks';
 
 const checkIsEmpty = data => (isEmpty(data) ? undefined : data);
 
@@ -93,12 +91,12 @@ const enrichHttpError = error => {
   return error;
 };
 
-module.exports = {
+export {
+  checkIsEmpty,
   requestSerializer,
   responseSerializer,
   errorSerializer,
   httpRequestSerializer,
   httpResponseSerializer,
-  enrichHttpError,
-  checkIsEmpty
+  enrichHttpError
 };

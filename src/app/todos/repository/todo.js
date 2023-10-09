@@ -1,6 +1,4 @@
-'use strict';
-
-const TODO = {
+export const TODO = {
   NAME: 'todo',
   COLUMNS: {
     id: 'id',
@@ -18,7 +16,7 @@ const TODO = {
   }
 };
 
-function TodoRepo(fastify) {
+const TodoRepo = fastify => {
   const createTodo =
     (knex, logTrace) =>
     async ({ data }) => {
@@ -28,6 +26,6 @@ function TodoRepo(fastify) {
     };
 
   return { createTodo };
-}
+};
 
-module.exports = { TodoRepo, TODO };
+export default TodoRepo;

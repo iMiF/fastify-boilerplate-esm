@@ -1,10 +1,8 @@
-'use strict';
+import { createTodoSchema } from '../schemas/index.js';
 
-const { createTodoSchema } = require('../schemas');
+import { createTodo } from '../handlers/index.js';
 
-const { createTodo } = require('../handlers');
-
-module.exports = async fastify => {
+const setupRoutes = async fastify => {
   fastify.route({
     method: 'POST',
     url: '/',
@@ -12,3 +10,5 @@ module.exports = async fastify => {
     handler: createTodo(fastify)
   });
 };
+
+export default setupRoutes;

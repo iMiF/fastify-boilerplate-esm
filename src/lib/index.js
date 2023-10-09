@@ -1,13 +1,6 @@
-'use strict';
-const { v4: uuidV4, v5: uuiV5 } = require('uuid');
-const logger = require('./logger');
-const serializers = require('./serializers');
-const redactor = require('./redactor');
+import { v4 as uuidV4, v5 as uuiV5 } from 'uuid';
+import { redactor } from './redactor.js';
 
-module.exports = {
-  uuidV4,
-  uuiV5,
-  ...logger,
-  ...redactor,
-  ...serializers
-};
+export { uuidV4, uuiV5, redactor };
+export * from './serializers.js';
+export * from './logger.js';

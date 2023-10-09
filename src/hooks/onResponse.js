@@ -1,12 +1,8 @@
-'use strict';
+import { logger } from '../lib/index.js';
 
-const { logger } = require('../lib/');
-
-const onResponse = async (req, res) => {
+export const onResponse = async (req, res) => {
   const { method, url } = req.raw;
   const msg = `Response ${res.statusCode} sent for ${method} ${url}`;
   const responseLog = { req, res, responseTime: res.getResponseTime() };
   logger.info(responseLog, msg);
 };
-
-module.exports = { onResponse };

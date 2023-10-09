@@ -1,7 +1,5 @@
-'use strict';
-
-const { pinoLogger, redactor, checkIsEmpty } = require('../lib/');
-const context = require('../lib/asyncContext');
+import { pinoLogger, redactor, checkIsEmpty } from '../lib/index.js';
+import { context } from '../lib/asyncContext.js';
 
 const traceHeaders = ['x-request-id', 'x-trace-id'];
 
@@ -19,7 +17,7 @@ function getLogTrace({ req }) {
   );
 }
 
-const requestContext = (req, _rep, done) => {
+export const requestContext = (req, _rep, done) => {
   const { url, method } = req.raw;
   // eslint-disable-next-line no-param-reassign
   req.logTrace = getLogTrace({ req });
@@ -34,5 +32,3 @@ const requestContext = (req, _rep, done) => {
   );
   context.run(store, done);
 };
-
-module.exports = { requestContext };

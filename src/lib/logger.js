@@ -1,26 +1,23 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-const pino = require('pino');
-const multistream = require('pino-multi-stream').multistream;
-const context = require('./asyncContext.js');
-
-const {
+import pino from 'pino';
+import { context } from './asyncContext.js';
+import {
   errorSerializer,
   httpRequestSerializer,
   httpResponseSerializer,
   requestSerializer,
   responseSerializer
-} = require('./serializers');
+} from './serializers.js';
 
-const streams = [
-  { stream: process.stdout },
-  { level: 'debug', stream: fs.createWriteStream(path.join(path.resolve(), '/logs/debug.log')) },
-  { level: 'fatal', stream: fs.createWriteStream(path.join(path.resolve(), '/logs/fatal.log')) }
-];
+// const fs = require('fs');
+// const path = require('path');
+// const multistream = require('pino-multi-stream').multistream;
+// const streams = [
+//   { stream: process.stdout },
+//   { level: 'debug', stream: fs.createWriteStream(path.join(path.resolve(), '/logs/debug.log')) },
+//   { level: 'fatal', stream: fs.createWriteStream(path.join(path.resolve(), '/logs/fatal.log')) }
+// ];
 
-const pinoLogger = pino(
+export const pinoLogger = pino(
   {
     name: 'fastify-boilerplate',
     level: 'info',
@@ -40,15 +37,13 @@ const pinoLogger = pino(
       request: httpRequestSerializer,
       response: httpResponseSerializer
     }
-  },
-  multistream(streams)
+  }
+  // multistream(streams)
 );
 
-const logger = new Proxy(pinoLogger, {
+export const logger = new Proxy(pinoLogger, {
   get(target, property) {
     const log = context.getStore()?.get('logger') || target;
     return log[property];
   }
 });
-
-module.exports = { pinoLogger, logger };

@@ -1,7 +1,5 @@
-'use strict';
+import { requestContext } from './requestContext.js';
+import { onResponse } from './onResponse.js';
+import { appendPayloadToResponse } from './preSerialization.js';
 
-const { requestContext } = require('./requestContext');
-const { onResponse } = require('./onResponse');
-const { appendPayloadToResponse } = require('./preSerialization');
-
-module.exports = { requestContext, onResponse, appendPayloadToResponse };
+export { requestContext, onResponse, appendPayloadToResponse };

@@ -1,16 +1,16 @@
-'use strict';
-const { CREATED } = require('http-status-codes').StatusCodes;
+import { StatusCodes } from 'http-status-codes';
+import { createTodo as createTodoService } from '../services/index.js';
 
-const { createTodo: createTodoService } = require('../services');
-
-const createTodo = fastify => async (request, reply) => {
-  const { body, logTrace } = request;
-  const createdTodo = await createTodoService({
-    fastify,
-    logTrace,
-    todo: body
-  });
-  return reply.code(CREATED).send(createdTodo);
+const createTodo = fastify => {
+  return async (request, reply) => {
+    const { body, logTrace } = request;
+    const createdTodo = await createTodoService({
+      fastify,
+      logTrace,
+      todo: body
+    });
+    return reply.code(StatusCodes.CREATED).send(createdTodo);
+  };
 };
 
-module.exports = createTodo;
+export default createTodo;

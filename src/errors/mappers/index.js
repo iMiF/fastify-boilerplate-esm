@@ -1,13 +1,7 @@
-'use strict';
+import basic from './basic.js';
+import paramsValidation from './paramsValidation.js';
+import unstructuredError from './unstructuredError.js';
+import postgressError from './postgressError.js';
 
-const basic = require('./basic');
-const paramsValidation = require('./paramsValidation');
-const unstructuredError = require('./unstructuredError');
-const postgressError = require('./postgressError');
-
-module.exports = {
-  paramsValidation,
-  unstructuredError,
-  postgressError,
-  DEFAULT_MAPPERS: [basic, paramsValidation, postgressError, unstructuredError]
-};
+export const DEFAULT_MAPPERS = [basic, paramsValidation, postgressError, unstructuredError];
+export const mappers = { paramsValidation, unstructuredError, postgressError };

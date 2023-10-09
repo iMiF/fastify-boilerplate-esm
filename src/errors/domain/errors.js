@@ -1,14 +1,10 @@
-'use strict';
+import ErrorCodes from './errorCodes.js';
+import CustomError from '../CustomError.js';
 
-const ErrorCodes = require('./errorCodes');
-const CustomError = require('../CustomError');
-
-module.exports = {
-  TodoNotFound: error =>
-    CustomError.create({
-      httpCode: ErrorCodes.TODO_NOT_FOUND.httpStatusCode,
-      message: ErrorCodes.TODO_NOT_FOUND.message,
-      code: ErrorCodes.TODO_NOT_FOUND.name,
-      error
-    })
-};
+export const TodoNotFound = error =>
+  CustomError.create({
+    httpCode: ErrorCodes.TODO_NOT_FOUND.httpStatusCode,
+    message: ErrorCodes.TODO_NOT_FOUND.message,
+    code: ErrorCodes.TODO_NOT_FOUND.name,
+    error
+  });

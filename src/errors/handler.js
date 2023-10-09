@@ -1,11 +1,9 @@
-'use strict';
+import CustomError from './CustomError.js';
+import { DEFAULT_MAPPERS } from './mappers/index.js';
+import { getRequest, getError } from './helpers.js';
 
-const CustomError = require('./CustomError');
-const { DEFAULT_MAPPERS } = require('./mappers');
-const { getRequest, getError } = require('./helpers');
-
-module.exports =
-  (mappers = DEFAULT_MAPPERS, options) =>
+// Экспорт функции
+export default (mappers = DEFAULT_MAPPERS, options) =>
   (error, request, reply) => {
     request.log.error({
       request: getRequest(request),
@@ -13,12 +11,14 @@ module.exports =
       log_trace: request.logTrace,
       message: 'Error while processing request'
     });
+
     for (const mapper of mappers) {
       const resp = mapper(error, options);
       if (resp) {
         return reply.code(resp.code).send(resp.response);
       }
     }
+
     const unhandledError = CustomError.create({
       httpCode: 500,
       code: 'INTERNAL_SERVER_ERROR',
