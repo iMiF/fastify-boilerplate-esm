@@ -10,7 +10,7 @@ const knexPlugin = async (fastify, options) => {
     fastify.decorate('knex', db);
   } catch (e) {
     fastify.log.error(`DB connection failed`);
-    throw Error(`Connection Failed ${e}`);
+    // throw Error(`Connection Failed ${e}`);
   }
 };
 
