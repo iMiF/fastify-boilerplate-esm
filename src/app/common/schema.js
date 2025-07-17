@@ -1,13 +1,11 @@
 const headers = {
-  withAuthorization: {
-    type: 'object',
-    additionalProperties: true,
-    required: ['Authorization'],
-    properties: {
-      Authorization: {
-        description: 'The x-auth-token generated after successful login',
-        type: 'string'
-      }
+  type: 'object',
+  additionalProperties: true,
+  required: ['Authorization'],
+  properties: {
+    Authorization: {
+      description: 'The x-auth-token generated after successful login',
+      type: 'string'
     }
   }
 };

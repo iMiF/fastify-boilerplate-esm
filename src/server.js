@@ -47,7 +47,7 @@ const swaggerConfig = () => {
 const init = async ({ config }) => {
   const { logger, uuidV4 } = lib;
   const app = fastify({
-    logger,
+    loggerInstance: logger,
     genReqId: req => req.headers['x-request-id'] || uuidV4(),
     disableRequestLogging: true
   });
