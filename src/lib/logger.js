@@ -1,4 +1,5 @@
 import pino from 'pino';
+import pinoPretty from 'pino-pretty';
 import { context } from './asyncContext.js';
 import {
   errorSerializer,
@@ -16,20 +17,26 @@ import {
 //   { level: 'debug', stream: fs.createWriteStream(path.join(path.resolve(), '/logs/debug.log')) },
 //   { level: 'fatal', stream: fs.createWriteStream(path.join(path.resolve(), '/logs/fatal.log')) }
 // ];
+const stream = pinoPretty({
+  colorize: true,
+  translateTime: 'HH:MM:ss',
+  ignore: 'pid,hostname,name',
+  levelFirst: true
+});
 
 export const pinoLogger = pino(
   {
     name: 'fastify-boilerplate',
     level: 'info',
     messageKey: 'message',
-    formatters: {
-      level(label) {
-        return { severity: label.toUpperCase() };
-      },
-      log(params) {
-        return params;
-      }
-    },
+    // formatters: {
+    //   level(label) {
+    //     return { severity: label.toUpperCase() };
+    //   },
+    //   log(params) {
+    //     return params;
+    //   }
+    // },
     serializers: {
       req: requestSerializer(pino.stdSerializers.req),
       res: responseSerializer(pino.stdSerializers.res),
@@ -37,7 +44,8 @@ export const pinoLogger = pino(
       request: httpRequestSerializer,
       response: httpResponseSerializer
     }
-  }
+  },
+  stream
   // multistream(streams)
 );
 
